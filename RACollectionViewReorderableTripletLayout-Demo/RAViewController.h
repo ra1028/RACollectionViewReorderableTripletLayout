@@ -11,6 +11,4 @@
 
 @interface RAViewController : UIViewController <RACollectionViewDelegateReorderableTripletLayout, RACollectionViewReorderableTripletLayoutDataSource>
 
-- (IBAction)addCell:(UIBarButtonItem *)sender;
-
 @end

@@ -7,49 +7,36 @@
 //
 
 #import "RAViewController.h"
-
-@interface UICollectionViewCell (RAViewController)
-
-@property (nonatomic, strong) UIView *cover;
-
-@end
-
-@implementation UICollectionViewCell (RAViewController)
-
-@dynamic cover;
-
-- (void)setHighlighted:(BOOL)highlighted
-{
-    [self.cover removeFromSuperview];
-    self.cover = nil;
-    if (highlighted) {
-        self.cover = [[UIView alloc] initWithFrame:self.bounds];
-        self.cover.backgroundColor = [UIColor blackColor];
-        [self.contentView addSubview:self.cover];
-    }
-}
-
-@end
-
+#import "RACollectionViewCell.h"
 
 
 @interface RAViewController ()
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong) NSMutableArray *photosArray;
 
 @end
 
 @implementation RAViewController
-{
-    NSInteger numberOfCells;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    numberOfCells = 50;
+    [self setupPhotosArray];
+}
+
+- (void)setupPhotosArray
+{
+    [_photosArray removeAllObjects];
+    _photosArray = nil;
+    _photosArray = [NSMutableArray array];
+    for (NSInteger i = 1; i <= 20; i++) {
+        NSString *photoName = [NSString stringWithFormat:@"%ld.jpg",i];
+        UIImage *photo = [UIImage imageNamed:photoName];
+        [_photosArray addObject:photo];
+    }
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -59,7 +46,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return numberOfCells;
+    return _photosArray.count;
 }
 
 - (CGFloat)itemSpacingForLineItems:(UICollectionView *)collectionView
@@ -97,55 +84,44 @@
     [self.collectionView reloadData];
 }
 
+- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath didMoveToIndexPath:(NSIndexPath *)toIndexPath
+{
+    UIImage *image = [_photosArray objectAtIndex:fromIndexPath.item];
+    [_photosArray removeObjectAtIndex:fromIndexPath.item];
+    [_photosArray insertObject:image atIndex:toIndexPath.item];
+}
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellID = @"cellID";
-    UICollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor colorWithHue:(indexPath.item / 52.f) * 1.f saturation:1.f brightness:1.f alpha:1.f];
+    RACollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     
-    for (id label in cell.contentView.subviews) {
-        if ([label isKindOfClass:[UILabel class]]) {
-            [(UILabel *)label removeFromSuperview];
-        }
-    }
-    
-    UILabel *numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.bounds.size.width, cell.bounds.size.height)];
-    numberLabel.textColor = [UIColor blackColor];
-    numberLabel.textAlignment = NSTextAlignmentCenter;
-    numberLabel.text = [NSString stringWithFormat:@"%ld",indexPath.item];
-    numberLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    [cell.contentView insertSubview:numberLabel atIndex:0];
+    [cell.imageView removeFromSuperview];
+    cell.imageView.frame = cell.bounds;
+    cell.imageView.image = _photosArray[indexPath.item];
+    [cell.contentView addSubview:cell.imageView];
     
     return cell;
 }
 
-
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (numberOfCells == 1) {
+    if (_photosArray.count == 1) {
         return;
     }
-    numberOfCells--;
     [self.collectionView performBatchUpdates:^{
+        [_photosArray removeObjectAtIndex:indexPath.item];
         [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
     } completion:^(BOOL finished) {
         [self.collectionView reloadData];
     }];
 }
 
-
-
-- (IBAction)addCell:(UIBarButtonItem *)sender
+- (IBAction)reflesh:(UIBarButtonItem *)sender
 {
-    numberOfCells++;
-    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
-    
-    [self.collectionView performBatchUpdates:^{
-        [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
-    } completion:^(BOOL finished) {
-        [self.collectionView reloadData];
-    }];
+    [self setupPhotosArray];
+    [self.collectionView reloadData];
 }
+
 
 @end

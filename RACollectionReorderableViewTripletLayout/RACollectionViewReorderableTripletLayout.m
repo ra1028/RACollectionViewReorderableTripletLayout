@@ -330,14 +330,11 @@ typedef NS_ENUM(NSInteger, RAScrollDirction) {
         //update cell indexPath
         _reorderingCellIndexPath = toIndexPath;
         [self.collectionView moveItemAtIndexPath:atIndexPath toIndexPath:toIndexPath];
-    } completion:^(BOOL finished) {
-        if (finished) {
-            //did move
-            if ([self.datasource respondsToSelector:@selector(collectionView:itemAtIndexPath:didMoveToIndexPath:)]) {
-                [self.datasource collectionView:self.collectionView itemAtIndexPath:atIndexPath didMoveToIndexPath:toIndexPath];
-            }
+        //did move
+        if ([self.datasource respondsToSelector:@selector(collectionView:itemAtIndexPath:didMoveToIndexPath:)]) {
+            [self.datasource collectionView:self.collectionView itemAtIndexPath:atIndexPath didMoveToIndexPath:toIndexPath];
         }
-    }];
+    } completion:nil];
 }
 
 #pragma mark - UIGestureRecognizerDelegate
@@ -360,6 +357,10 @@ typedef NS_ENUM(NSInteger, RAScrollDirction) {
                 return YES;
             }
             return NO;
+        }
+    }else if ([_longPressGesture isEqual:gestureRecognizer]) {
+        if ([_panGesture isEqual:otherGestureRecognizer]) {
+            return YES;
         }
     }
     return YES;

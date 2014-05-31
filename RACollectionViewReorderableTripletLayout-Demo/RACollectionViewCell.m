@@ -10,20 +10,25 @@
 
 @implementation RACollectionViewCell
 
-- (void)awakeFromNib
+- (instancetype)initWithCoder:(NSCoder *)coder
 {
-    [_cover removeFromSuperview];
-    _cover = nil;
-    _cover = [[UIView alloc] initWithFrame:self.bounds];
-    _cover.backgroundColor = [UIColor blackColor];
-    _cover.alpha = 0;
-    [self.contentView addSubview:_cover];
+    self = [super initWithCoder:coder];
+    if (self) {
+        _imageView = [[UIImageView alloc] init];
+        _imageView.contentMode = UIViewContentModeScaleAspectFill;
+        _imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    }
+    return self;
 }
 
 - (void)setHighlighted:(BOOL)highlighted
 {
     [super setHighlighted:highlighted];
-    self.cover.alpha = highlighted ? .3f : 0;
+    if (highlighted) {
+        _imageView.alpha = .7f;
+    }else {
+        _imageView.alpha = 1.f;
+    }
 }
 
 @end

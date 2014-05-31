@@ -10,6 +10,6 @@
 
 @interface RACollectionViewCell : UICollectionViewCell
 
-@property (nonatomic, strong) UIView *cover;
+@property (nonatomic, strong) UIImageView *imageView;
 
 @end
