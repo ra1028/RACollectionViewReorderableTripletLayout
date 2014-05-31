@@ -15,8 +15,6 @@
 @optional
 
 - (CGSize)sizeForLargeItem:(UICollectionView *)collectionView; //Default to automaticaly grow square !
-- (CGFloat)itemSpacingForLineItems:(UICollectionView *)collectionView; //Default is 0.
-- (CGFloat)lineSpacingForLineItems:(UICollectionView *)collectionView; //Default is 0.
 - (UIEdgeInsets)insetsForSection:(UICollectionView *)collectionView; //Default is (0, 0, 0, 0).
 
 @end

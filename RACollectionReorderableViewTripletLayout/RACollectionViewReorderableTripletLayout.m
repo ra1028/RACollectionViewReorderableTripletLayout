@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, RAScrollDirction) {
 @implementation UIImageView (RACollectionViewReorderableTripletLayout)
 
 - (void)setCellCopiedImage:(UICollectionViewCell *)cell {
-    UIGraphicsBeginImageContext(cell.bounds.size);
+    UIGraphicsBeginImageContextWithOptions(cell.bounds.size, NO, 4.f);
     [cell.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

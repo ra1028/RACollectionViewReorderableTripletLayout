@@ -60,7 +60,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5wM-vA-er4">
-                        <barButtonItem key="leftBarButtonItem" title="reflesh" id="9bn-Ms-Y1y">
+                        <barButtonItem key="leftBarButtonItem" title="Refresh" id="9bn-Ms-Y1y">
                             <connections>
                                 <action selector="reflesh:" destination="wjw-n1-v1T" id="EPx-Wj-ziJ"/>
                             </connections>

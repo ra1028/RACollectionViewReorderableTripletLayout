@@ -41,7 +41,7 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    return 1; //Sorry, has not supported sections two or more.
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -49,12 +49,12 @@
     return _photosArray.count;
 }
 
-- (CGFloat)itemSpacingForLineItems:(UICollectionView *)collectionView
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
     return 5.f;
 }
 
-- (CGFloat)lineSpacingForLineItems:(UICollectionView *)collectionView
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     return 5.f;
 }
