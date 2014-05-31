@@ -1,0 +1,8 @@
+#ignore
+.DS_Store
+
+#pods
+Podfile
+Podfile.lock
+Pods
+*.xcworkspace
