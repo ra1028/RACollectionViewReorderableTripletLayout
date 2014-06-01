@@ -21,6 +21,14 @@ RACollectionViewReorderableTripletLayout
 ![animated gif](https://github.com/ra1028/RACollectionViewReorderableTripletLayout/raw/master/Assets/animation.gif)
 
 
+## Installation
+
+RACollectionViewReorderableTribletLayout is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+    pod "RACollectionViewReorderableTribletLayout"
+
+
 ## Usage
 Add RACollectionViewReorderableTripletLayout to your collection view, then set delegate and datasource.
 ```Objective-C
@@ -55,4 +63,5 @@ Add RACollectionViewReorderableTripletLayout to your collection view, then set d
 
 
 ## License
-RACollectionViewReorderableTripletLayout is released under the MIT License, see LICENSE.txt.
+RACollectionViewReorderableTribletLayout is available under the MIT license. See the LICENSE file for more info.
+

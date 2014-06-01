@@ -27,6 +27,8 @@
 		2A3D05991939A145004220E0 /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2A3D05851939A145004220E0 /* 7.jpg */; };
 		2A3D059A1939A145004220E0 /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2A3D05861939A145004220E0 /* 8.jpg */; };
 		2A3D059B1939A145004220E0 /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2A3D05871939A145004220E0 /* 9.jpg */; };
+		2A6EBA65193B204A00450C43 /* RACollectionViewReorderableTripletLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6EBA62193B204A00450C43 /* RACollectionViewReorderableTripletLayout.m */; };
+		2A6EBA66193B204A00450C43 /* RACollectionViewTripletLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6EBA64193B204A00450C43 /* RACollectionViewTripletLayout.m */; };
 		2AC2131F19396ED700521FB9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AC2131E19396ED700521FB9 /* Foundation.framework */; };
 		2AC2132119396ED700521FB9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AC2132019396ED700521FB9 /* CoreGraphics.framework */; };
 		2AC2132319396ED700521FB9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AC2132219396ED700521FB9 /* UIKit.framework */; };
@@ -42,8 +44,6 @@
 		2AC2135B19396EFD00521FB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AC2135519396EFD00521FB9 /* Main.storyboard */; };
 		2AC2135C19396EFD00521FB9 /* RAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC2135719396EFD00521FB9 /* RAViewController.m */; };
 		2AC2135D19396EFD00521FB9 /* RACollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC2135919396EFD00521FB9 /* RACollectionViewCell.m */; };
-		2AC2136319396F5E00521FB9 /* RACollectionViewReorderableTripletLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC2136019396F5E00521FB9 /* RACollectionViewReorderableTripletLayout.m */; };
-		2AC2136419396F5E00521FB9 /* RACollectionViewTripletLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC2136219396F5E00521FB9 /* RACollectionViewTripletLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +77,10 @@
 		2A3D05851939A145004220E0 /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
 		2A3D05861939A145004220E0 /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.jpg; sourceTree = "<group>"; };
 		2A3D05871939A145004220E0 /* 9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9.jpg; sourceTree = "<group>"; };
+		2A6EBA61193B204A00450C43 /* RACollectionViewReorderableTripletLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RACollectionViewReorderableTripletLayout.h; sourceTree = "<group>"; };
+		2A6EBA62193B204A00450C43 /* RACollectionViewReorderableTripletLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RACollectionViewReorderableTripletLayout.m; sourceTree = "<group>"; };
+		2A6EBA63193B204A00450C43 /* RACollectionViewTripletLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RACollectionViewTripletLayout.h; sourceTree = "<group>"; };
+		2A6EBA64193B204A00450C43 /* RACollectionViewTripletLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RACollectionViewTripletLayout.m; sourceTree = "<group>"; };
 		2AC2131B19396ED700521FB9 /* RACollectionViewReorderableTripletLayout-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RACollectionViewReorderableTripletLayout-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AC2131E19396ED700521FB9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2AC2132019396ED700521FB9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -98,10 +102,6 @@
 		2AC2135719396EFD00521FB9 /* RAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RAViewController.m; sourceTree = "<group>"; };
 		2AC2135819396EFD00521FB9 /* RACollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RACollectionViewCell.h; sourceTree = "<group>"; };
 		2AC2135919396EFD00521FB9 /* RACollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RACollectionViewCell.m; sourceTree = "<group>"; };
-		2AC2135F19396F5E00521FB9 /* RACollectionViewReorderableTripletLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RACollectionViewReorderableTripletLayout.h; sourceTree = "<group>"; };
-		2AC2136019396F5E00521FB9 /* RACollectionViewReorderableTripletLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RACollectionViewReorderableTripletLayout.m; sourceTree = "<group>"; };
-		2AC2136119396F5E00521FB9 /* RACollectionViewTripletLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RACollectionViewTripletLayout.h; sourceTree = "<group>"; };
-		2AC2136219396F5E00521FB9 /* RACollectionViewTripletLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RACollectionViewTripletLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,10 +155,22 @@
 			path = photos;
 			sourceTree = "<group>";
 		};
+		2A6EBA60193B204A00450C43 /* RACollectionViewReorderableTripletLayout */ = {
+			isa = PBXGroup;
+			children = (
+				2A6EBA61193B204A00450C43 /* RACollectionViewReorderableTripletLayout.h */,
+				2A6EBA62193B204A00450C43 /* RACollectionViewReorderableTripletLayout.m */,
+				2A6EBA63193B204A00450C43 /* RACollectionViewTripletLayout.h */,
+				2A6EBA64193B204A00450C43 /* RACollectionViewTripletLayout.m */,
+			);
+			name = RACollectionViewReorderableTripletLayout;
+			path = ../RACollectionViewReorderableTripletLayout;
+			sourceTree = "<group>";
+		};
 		2AC2131219396ED700521FB9 = {
 			isa = PBXGroup;
 			children = (
-				2AC2135E19396F5E00521FB9 /* RACollectionReorderableViewTripletLayout */,
+				2A6EBA60193B204A00450C43 /* RACollectionViewReorderableTripletLayout */,
 				2AC2132419396ED700521FB9 /* RACollectionViewReorderableTripletLayout-Demo */,
 				2AC2134319396ED700521FB9 /* RACollectionViewReorderableTripletLayout-DemoTests */,
 				2AC2131D19396ED700521FB9 /* Frameworks */,
@@ -230,17 +242,6 @@
 				2AC2134619396ED700521FB9 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		2AC2135E19396F5E00521FB9 /* RACollectionReorderableViewTripletLayout */ = {
-			isa = PBXGroup;
-			children = (
-				2AC2135F19396F5E00521FB9 /* RACollectionViewReorderableTripletLayout.h */,
-				2AC2136019396F5E00521FB9 /* RACollectionViewReorderableTripletLayout.m */,
-				2AC2136119396F5E00521FB9 /* RACollectionViewTripletLayout.h */,
-				2AC2136219396F5E00521FB9 /* RACollectionViewTripletLayout.m */,
-			);
-			path = RACollectionReorderableViewTripletLayout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,10 +364,10 @@
 			files = (
 				2AC2132B19396ED700521FB9 /* main.m in Sources */,
 				2AC2135A19396EFD00521FB9 /* RAAppDelegate.m in Sources */,
-				2AC2136419396F5E00521FB9 /* RACollectionViewTripletLayout.m in Sources */,
-				2AC2136319396F5E00521FB9 /* RACollectionViewReorderableTripletLayout.m in Sources */,
 				2AC2135C19396EFD00521FB9 /* RAViewController.m in Sources */,
 				2AC2135D19396EFD00521FB9 /* RACollectionViewCell.m in Sources */,
+				2A6EBA66193B204A00450C43 /* RACollectionViewTripletLayout.m in Sources */,
+				2A6EBA65193B204A00450C43 /* RACollectionViewReorderableTripletLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
