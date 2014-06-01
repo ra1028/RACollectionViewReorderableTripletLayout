@@ -39,7 +39,7 @@ typedef NS_ENUM(NSInteger, RAScrollDirction) {
 @property (nonatomic, strong) UIView *cellFakeView;
 @property (nonatomic, strong) CADisplayLink *displayLink;
 @property (nonatomic, assign) RAScrollDirction scrollDirection;
-@property (nonatomic, assign) NSIndexPath *reorderingCellIndexPath;
+@property (nonatomic, strong) NSIndexPath *reorderingCellIndexPath;
 @property (nonatomic, assign) CGPoint reorderingCellCenter;
 @property (nonatomic, assign) CGPoint cellFakeViewCenter;
 @property (nonatomic, assign) CGPoint panTranslation;
@@ -81,24 +81,11 @@ typedef NS_ENUM(NSInteger, RAScrollDirction) {
     }
 }
 
-- (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
-{
-    NSArray *attributes = [super layoutAttributesForElementsInRect:rect];
-    for (UICollectionViewLayoutAttributes *attribute in attributes) {
-        if (attribute.representedElementCategory == UICollectionElementCategoryCell) {
-            if (attribute.indexPath == _reorderingCellIndexPath) {
-                attribute.hidden = YES;
-            }
-        }
-    }
-    return attributes;
-}
-
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewLayoutAttributes *attribute = [super layoutAttributesForItemAtIndexPath:indexPath];
     if (attribute.representedElementCategory == UICollectionElementCategoryCell) {
-        if (attribute.indexPath == _reorderingCellIndexPath) {
+        if ([attribute.indexPath isEqual:_reorderingCellIndexPath]) {
             attribute.hidden = YES;
         }
     }

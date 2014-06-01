@@ -53,12 +53,13 @@
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
 {
-    NSMutableArray *attributes = [NSMutableArray array];
+    NSMutableArray *attributesArray = [NSMutableArray array];
     for (NSInteger i = 0; i < _numberOfCells; i++) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
-        [attributes addObject:[self layoutAttributesForItemAtIndexPath:indexPath]];
+        UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath:indexPath];
+        [attributesArray addObject:attributes];
     }
-    return  attributes;
+    return  attributesArray;
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
