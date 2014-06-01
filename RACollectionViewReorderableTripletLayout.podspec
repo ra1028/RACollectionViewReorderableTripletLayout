@@ -8,5 +8,5 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '7.0'
   s.source       = { :git => "https://github.com/ra1028/RACollectionViewReorderableTripletLayout.git", :tag => "0.0.1" }
   s.requires_arc = true
-  s.source_files =  'RACollectionViewReorderableTripletLayouat/*.{h,m}'
+  s.source_files =  'RACollectionViewReorderableTripletLayout/*.{h,m}'
 end
