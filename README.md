@@ -8,6 +8,8 @@ RACollectionViewReorderableTripletLayout
 - Reorder cells by long pressing and dragging it !
 - You can Receive notification to some dragging events.
 - Sorry, has not supported horizontal scroll collection view.
+- Sections two or more are also not supported...
+#### Please, send me pull request !
 
 
 ## Screen shots
