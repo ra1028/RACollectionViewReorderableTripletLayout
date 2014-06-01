@@ -14,8 +14,7 @@
 
 @optional
 
-- (CGSize)sizeForLargeItem:(UICollectionView *)collectionView; //Default to automaticaly grow square !
-- (UIEdgeInsets)insetsForSection:(UICollectionView *)collectionView; //Default is (0, 0, 0, 0).
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForLargeItemsInSection:(NSInteger)section; //Default to automaticaly grow square !
 
 @end
 

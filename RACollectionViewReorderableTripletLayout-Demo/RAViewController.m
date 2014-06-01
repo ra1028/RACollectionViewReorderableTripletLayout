@@ -59,12 +59,12 @@
     return 5.f;
 }
 
-- (UIEdgeInsets)insetsForSection:(UICollectionView *)collectionView
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     return UIEdgeInsetsMake(5.f, 0, 5.f, 0);
 }
 
-- (CGSize)sizeForLargeItem:(UICollectionView *)collectionView
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForLargeItemsInSection:(NSInteger)section
 {
     return RACollectionViewTripletLayoutStyleSquare; //same as default !
 }

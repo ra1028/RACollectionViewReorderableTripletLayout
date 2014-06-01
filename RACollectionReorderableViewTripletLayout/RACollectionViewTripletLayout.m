@@ -35,11 +35,6 @@
     _numberOfCells = [self.collectionView numberOfItemsInSection:0];
     //number of lines
     _numberOfLines = ceil((CGFloat)_numberOfCells / 3.f);
-    //insets
-    _insets = UIEdgeInsetsMake(0, 0, 0, 0);
-    if ([self.delegate respondsToSelector:@selector(insetsForSection:)]) {
-        _insets = [self.delegate insetsForSection:self.collectionView];
-    }
 }
 
 - (id<RACollectionViewDelegateTripletLayout>)delegate
@@ -82,11 +77,16 @@
     CGFloat smallCellSideLength = (largeCellSideLength - _itemSpacing) / 2.f;
     _largeCellSize = CGSizeMake(largeCellSideLength, largeCellSideLength);
     _smallCellSize = CGSizeMake(smallCellSideLength, smallCellSideLength);
-    if ([self.delegate respondsToSelector:@selector(sizeForLargeItem:)]) {
-        if (!CGSizeEqualToSize([self.delegate sizeForLargeItem:self.collectionView], RACollectionViewTripletLayoutStyleSquare)) {
-            _largeCellSize = [self.delegate sizeForLargeItem:self.collectionView];
+    if ([self.delegate respondsToSelector:@selector(collectionView:layout:sizeForLargeItemsInSection:)]) {
+        if (!CGSizeEqualToSize([self.delegate collectionView:self.collectionView layout:self sizeForLargeItemsInSection:indexPath.section], RACollectionViewTripletLayoutStyleSquare)) {
+            _largeCellSize = [self.delegate collectionView:self.collectionView layout:self sizeForLargeItemsInSection:indexPath.section];
             _smallCellSize = CGSizeMake(_collectionViewSize.width - _largeCellSize.width - _itemSpacing - _insets.left - _insets.right, (_largeCellSize.height / 2.f) - (_itemSpacing / 2.f));
         }
+    }
+    //insets
+    _insets = UIEdgeInsetsMake(0, 0, 0, 0);
+    if ([self.delegate respondsToSelector:@selector(collectionView:layout:insetForSectionAtIndex:)]) {
+        _insets = [self.delegate collectionView:self.collectionView layout:self insetForSectionAtIndex:indexPath.section];
     }
     
     NSInteger line = indexPath.item / 3;

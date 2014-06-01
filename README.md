@@ -9,6 +9,7 @@ RACollectionViewReorderableTripletLayout
 - You can Receive notification to some dragging events.
 - Sorry, has not supported horizontal scroll collection view.
 - Sections two or more are also not supported...
+
 #### Please, send me pull request !
 
 
@@ -31,10 +32,7 @@ Add RACollectionViewReorderableTripletLayout to your collection view, then set d
 ## Delegates and Datasource
 #### TripletLayout
 ```Objective-C
-- (CGSize)sizeForLargeItem:(UICollectionView *)collectionView; //Default to automaticaly grow square !
-- (CGFloat)itemSpacingForLineItems:(UICollectionView *)collectionView; //Default is 0.
-- (CGFloat)lineSpacingForLineItems:(UICollectionView *)collectionView; //Default is 0.
-- (UIEdgeInsets)insetsForSection:(UICollectionView *)collectionView; //Default is (0, 0, 0, 0).
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForLargeItemsInSection:(NSInteger)section; //Default to automaticaly grow square !
 ```
 #### ReorderableTripletLayout
 ```Objective-C
