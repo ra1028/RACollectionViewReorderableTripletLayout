@@ -1,14 +1,14 @@
 RACollectionViewReorderableTripletLayout
 =======================
 
-#### The custom collectionView layout that can perform reordering of cells by dragging it
+#### The custom collectionView layout that can perform reordering of cells by dragging it.
 
 
 ## Features
 - Reorder cells by long pressing and dragging it !
 - You can Receive notification to some dragging events.
 - Sorry, has not supported horizontal scroll collection view.
-- Sections two or more are also not supported...
+- ~~Sections two or more are also not supported...~~   __Supported !__
 
 #### Please, send me pull request !
 
@@ -40,7 +40,10 @@ Add RACollectionViewReorderableTripletLayout to your collection view, then set d
 ## Delegates and Datasource
 #### TripletLayout
 ```Objective-C
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForLargeItemsInSection:(NSInteger)section; //Default to automaticaly grow square !
+- (CGSize)sizeForLargeItemsInCollectionView:(UICollectionView *)collectionView; //Default to automaticaly grow square !
+- (CGFloat)minimumInteritemSpacingForCollectionView:(UICollectionView *)collectionView;
+- (CGFloat)minimumLineSpacingForCollectionView:(UICollectionView *)collectionView;
+- (UIEdgeInsets)insetsForCollectionView:(UICollectionView *)collectionView;
 ```
 #### ReorderableTripletLayout
 ```Objective-C
