@@ -14,7 +14,10 @@
 
 @optional
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForLargeItemsInSection:(NSInteger)section; //Default to automaticaly grow square !
+- (CGSize)sizeForLargeItemsInCollectionView:(UICollectionView *)collectionView; //Default to automaticaly grow square !
+- (CGFloat)minimumInteritemSpacingForCollectionView:(UICollectionView *)collectionView;
+- (CGFloat)minimumLineSpacingForCollectionView:(UICollectionView *)collectionView;
+- (UIEdgeInsets)insetsForCollectionView:(UICollectionView *)collectionView;
 
 @end
 

@@ -41,7 +41,7 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1; //Sorry, has not supported sections two or more.
+    return 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -49,22 +49,22 @@
     return _photosArray.count;
 }
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+- (CGFloat)minimumInteritemSpacingForCollectionView:(UICollectionView *)collectionView
 {
     return 5.f;
 }
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+- (CGFloat)minimumLineSpacingForCollectionView:(UICollectionView *)collectionView
 {
     return 5.f;
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+- (UIEdgeInsets)insetsForCollectionView:(UICollectionView *)collectionView
 {
     return UIEdgeInsetsMake(5.f, 0, 5.f, 0);
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForLargeItemsInSection:(NSInteger)section
+- (CGSize)sizeForLargeItemsInCollectionView:(UICollectionView *)collectionView
 {
     return RACollectionViewTripletLayoutStyleSquare; //same as default !
 }
@@ -99,6 +99,9 @@
     [cell.imageView removeFromSuperview];
     cell.imageView.frame = cell.bounds;
     cell.imageView.image = _photosArray[indexPath.item];
+    if (indexPath.section == 1) {
+        cell.imageView.image = _photosArray[indexPath.item];
+    }
     [cell.contentView addSubview:cell.imageView];
     
     return cell;
@@ -117,7 +120,7 @@
     }];
 }
 
-- (IBAction)reflesh:(UIBarButtonItem *)sender
+- (IBAction)refresh:(UIBarButtonItem *)sender
 {
     [self setupPhotosArray];
     [self.collectionView reloadData];

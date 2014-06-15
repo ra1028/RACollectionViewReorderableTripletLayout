@@ -186,7 +186,10 @@ typedef NS_ENUM(NSInteger, RAScrollDirction) {
             //cell fake view
             UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
             _cellFakeView = [[UIView alloc] initWithFrame:cell.frame];
-            _cellFakeView.clipsToBounds = YES;
+            _cellFakeView.layer.shadowColor = [UIColor blackColor].CGColor;
+            _cellFakeView.layer.shadowOffset = CGSizeMake(0, 0);
+            _cellFakeView.layer.shadowOpacity = .5f;
+            _cellFakeView.layer.shadowRadius = 3.f;
             UIImageView *cellFakeImageView = [[UIImageView alloc] initWithFrame:cell.bounds];
             UIImageView *highlightedImageView = [[UIImageView alloc] initWithFrame:cell.bounds];
             cellFakeImageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -312,6 +315,7 @@ typedef NS_ENUM(NSInteger, RAScrollDirction) {
     if ([self.datasource respondsToSelector:@selector(collectionView:itemAtIndexPath:willMoveToIndexPath:)]) {
         [self.datasource collectionView:self.collectionView itemAtIndexPath:atIndexPath willMoveToIndexPath:toIndexPath];
     }
+    
     //move
     [self.collectionView performBatchUpdates:^{
         //update cell indexPath
