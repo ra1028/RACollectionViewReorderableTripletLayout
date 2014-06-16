@@ -66,7 +66,6 @@ typedef NS_ENUM(NSInteger, RAScrollDirction) {
 - (void)prepareLayout
 {
     [super prepareLayout];
-    
     //gesture
     [self setUpCollectionViewGesture];
     //scroll triger insets
@@ -86,7 +85,16 @@ typedef NS_ENUM(NSInteger, RAScrollDirction) {
     UICollectionViewLayoutAttributes *attribute = [super layoutAttributesForItemAtIndexPath:indexPath];
     if (attribute.representedElementCategory == UICollectionElementCategoryCell) {
         if ([attribute.indexPath isEqual:_reorderingCellIndexPath]) {
-            attribute.hidden = YES;
+            CGFloat alpha = 0;
+            if ([self.delegate respondsToSelector:@selector(reorderingItemAlpha:)]) {
+                alpha = [self.delegate reorderingItemAlpha:self.collectionView];
+                if (alpha >= 1.f) {
+                    alpha = 1.f;
+                }else if (alpha <= 0) {
+                    alpha = 0;
+                }
+            }
+            attribute.alpha = alpha;
         }
     }
     return attribute;
@@ -116,7 +124,7 @@ typedef NS_ENUM(NSInteger, RAScrollDirction) {
         return;
     }
     _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(autoScroll)];
-    [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+    [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
 }
 
 -  (void)invalidateDisplayLink
@@ -135,15 +143,15 @@ typedef NS_ENUM(NSInteger, RAScrollDirction) {
     
     if (self.scrollDirection == RAScrollDirctionDown) {
         CGFloat percentage = (((CGRectGetMaxY(_cellFakeView.frame) - contentOffset.y) - (boundsSize.height - _scrollTrigerEdgeInsets.bottom - _scrollTrigePadding.bottom)) / _scrollTrigerEdgeInsets.bottom);
-        increment = 15 * percentage;
-        if (increment >= 15.f) {
-            increment = 15.f;
+        increment = 10 * percentage;
+        if (increment >= 10.f) {
+            increment = 10.f;
         }
     }else if (self.scrollDirection == RAScrollDirctionUp) {
         CGFloat percentage = (1.f - ((CGRectGetMinY(_cellFakeView.frame) - contentOffset.y - _scrollTrigePadding.top) / _scrollTrigerEdgeInsets.top));
-        increment = -15.f * percentage;
-        if (increment <= -15.f) {
-            increment = -15.f;
+        increment = -10.f * percentage;
+        if (increment <= -10.f) {
+            increment = -10.f;
         }
     }
     
@@ -157,9 +165,11 @@ typedef NS_ENUM(NSInteger, RAScrollDirction) {
         return;
     }
     
-    _cellFakeViewCenter = CGPointMake(_cellFakeViewCenter.x, _cellFakeViewCenter.y + increment);
-    _cellFakeView.center = CGPointMake(_cellFakeViewCenter.x + _panTranslation.x, _cellFakeViewCenter.y + _panTranslation.y);
-    self.collectionView.contentOffset = CGPointMake(contentOffset.x, contentOffset.y + increment);
+    [self.collectionView performBatchUpdates:^{
+        _cellFakeViewCenter = CGPointMake(_cellFakeViewCenter.x, _cellFakeViewCenter.y + increment);
+        _cellFakeView.center = CGPointMake(_cellFakeViewCenter.x + _panTranslation.x, _cellFakeViewCenter.y + _panTranslation.y);
+        self.collectionView.contentOffset = CGPointMake(contentOffset.x, contentOffset.y + increment);
+    } completion:nil];
     [self moveItemIfNeeded];
 }
 

@@ -24,6 +24,7 @@
 
 @optional
 
+- (CGFloat)reorderingItemAlpha:(UICollectionView * )collectionview; //Default 0.
 - (UIEdgeInsets)autoScrollTrigerEdgeInsets:(UICollectionView *)collectionView; //Sorry, has not supported horizontal scroll.
 - (UIEdgeInsets)autoScrollTrigerPadding:(UICollectionView *)collectionView;
 

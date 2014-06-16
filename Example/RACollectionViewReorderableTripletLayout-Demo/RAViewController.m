@@ -79,6 +79,11 @@
     return UIEdgeInsetsMake(64.f, 0, 0, 0);
 }
 
+- (CGFloat)reorderingItemAlpha:(UICollectionView *)collectionview
+{
+    return .3f;
+}
+
 - (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout didEndDraggingItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.collectionView reloadData];

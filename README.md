@@ -14,7 +14,8 @@ RACollectionViewReorderableTripletLayout
 
 
 ## Screen shots
-![screen shot](https://github.com/ra1028/RACollectionViewReorderableTripletLayout/raw/master/Assets/screenshot.png)
+![screen shot1](https://github.com/ra1028/RACollectionViewReorderableTripletLayout/raw/master/Assets/screenshot1.png)
+![screen shot2](https://github.com/ra1028/RACollectionViewReorderableTripletLayout/raw/master/Assets/screenshot2.png)
 
 
 ## Animation
@@ -32,8 +33,8 @@ it, simply add the following line to your Podfile:
 ## Usage
 Add RACollectionViewReorderableTripletLayout to your collection view, then set delegate and datasource.
 ```Objective-C
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
+self.collectionView.delegate = self;
+self.collectionView.dataSource = self;
 ```
 
 
@@ -55,6 +56,7 @@ Add RACollectionViewReorderableTripletLayout to your collection view, then set d
 ```
 
 ```Objective-c
+- (CGFloat)reorderingItemAlpha:(UICollectionView * )collectionview; //Default 0.
 - (UIEdgeInsets)autoScrollTrigerEdgeInsets:(UICollectionView *)collectionView; //Sorry, has not supported horizontal scroll.
 - (UIEdgeInsets)autoScrollTrigerPadding:(UICollectionView *)collectionView;
 
