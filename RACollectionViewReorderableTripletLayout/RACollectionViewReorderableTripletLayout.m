@@ -346,6 +346,10 @@ typedef NS_ENUM(NSInteger, RAScrollDirction) {
         if (_longPressGesture.state == 0 || _longPressGesture.state == 5) {
             return NO;
         }
+    }else if ([_longPressGesture isEqual:gestureRecognizer]) {
+        if (self.collectionView.panGestureRecognizer.state != 0 && self.collectionView.panGestureRecognizer.state != 5) {
+            return NO;
+        }
     }
     return YES;
 }
@@ -362,6 +366,10 @@ typedef NS_ENUM(NSInteger, RAScrollDirction) {
     }else if ([_longPressGesture isEqual:gestureRecognizer]) {
         if ([_panGesture isEqual:otherGestureRecognizer]) {
             return YES;
+        }
+    }else if ([self.collectionView.panGestureRecognizer isEqual:gestureRecognizer]) {
+        if (_longPressGesture.state == 0 || _longPressGesture.state == 5) {
+            return NO;
         }
     }
     return YES;
