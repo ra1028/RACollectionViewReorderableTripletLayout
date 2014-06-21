@@ -156,11 +156,21 @@ typedef NS_ENUM(NSInteger, RAScrollDirction) {
     }
     
     if (contentOffset.y + increment <= -contentInset.top) {
-        self.collectionView.contentOffset = CGPointMake(contentOffset.x, -contentInset.top);
+        [UIView animateWithDuration:.07f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            CGFloat diff = -contentInset.top - contentOffset.y;
+            self.collectionView.contentOffset = CGPointMake(contentOffset.x, -contentInset.top);
+            _cellFakeViewCenter = CGPointMake(_cellFakeViewCenter.x, _cellFakeViewCenter.y + diff);
+            _cellFakeView.center = CGPointMake(_cellFakeViewCenter.x + _panTranslation.x, _cellFakeViewCenter.y + _panTranslation.y);
+        } completion:nil];
         [self invalidateDisplayLink];
         return;
     }else if (contentOffset.y + increment >= contentSize.height - boundsSize.height - contentInset.bottom) {
-        self.collectionView.contentOffset = CGPointMake(contentOffset.x, contentSize.height - boundsSize.height - contentInset.bottom);
+        [UIView animateWithDuration:.07f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            CGFloat diff = contentSize.height - boundsSize.height - contentInset.bottom - contentOffset.y;
+            self.collectionView.contentOffset = CGPointMake(contentOffset.x, contentSize.height - boundsSize.height - contentInset.bottom);
+            _cellFakeViewCenter = CGPointMake(_cellFakeViewCenter.x, _cellFakeViewCenter.y + diff);
+            _cellFakeView.center = CGPointMake(_cellFakeViewCenter.x + _panTranslation.x, _cellFakeViewCenter.y + _panTranslation.y);
+        } completion:nil];
         [self invalidateDisplayLink];
         return;
     }
