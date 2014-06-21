@@ -29,4 +29,7 @@
 @property (nonatomic, assign, readonly) CGSize largeCellSize;
 @property (nonatomic, assign, readonly) CGSize smallCellSize;
 
+//needs override
+- (BOOL)shouldUpdateAttributesArray;
+
 @end

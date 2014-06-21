@@ -46,6 +46,7 @@ typedef NS_ENUM(NSInteger, RAScrollDirction) {
 @property (nonatomic, assign) UIEdgeInsets scrollTrigerEdgeInsets;
 @property (nonatomic, assign) UIEdgeInsets scrollTrigePadding;
 @property (nonatomic, assign) BOOL setUped;
+@property (nonatomic, assign) BOOL needsUpdateLayout;
 
 @end
 
@@ -99,6 +100,17 @@ typedef NS_ENUM(NSInteger, RAScrollDirction) {
     }
     return attribute;
 }
+
+- (BOOL)shouldUpdateAttributesArray
+{
+    if (_needsUpdateLayout) {
+        _needsUpdateLayout = NO;
+        return YES;
+    }else {
+        return NO;
+    }
+}
+
 
 #pragma mark - Methods
 
@@ -199,6 +211,7 @@ typedef NS_ENUM(NSInteger, RAScrollDirction) {
             if ([self.delegate respondsToSelector:@selector(collectionView:layout:willBeginDraggingItemAtIndexPath:)]) {
                 [self.delegate collectionView:self.collectionView layout:self willBeginDraggingItemAtIndexPath:indexPath];
             }
+            _needsUpdateLayout = YES;
             //indexPath
             _reorderingCellIndexPath = indexPath;
             //scrolls top off
@@ -250,6 +263,7 @@ typedef NS_ENUM(NSInteger, RAScrollDirction) {
             if ([self.delegate respondsToSelector:@selector(collectionView:layout:willEndDraggingItemAtIndexPath:)]) {
                 [self.delegate collectionView:self.collectionView layout:self willEndDraggingItemAtIndexPath:currentCellIndexPath];
             }
+            _needsUpdateLayout = YES;
             //scrolls top on
             self.collectionView.scrollsToTop = YES;
             //disable auto scroll
@@ -336,6 +350,7 @@ typedef NS_ENUM(NSInteger, RAScrollDirction) {
         [self.datasource collectionView:self.collectionView itemAtIndexPath:atIndexPath willMoveToIndexPath:toIndexPath];
     }
     
+    _needsUpdateLayout = YES;
     //move
     [self.collectionView performBatchUpdates:^{
         //update cell indexPath

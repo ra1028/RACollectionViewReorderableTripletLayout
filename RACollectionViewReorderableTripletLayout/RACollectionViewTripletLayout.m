@@ -16,6 +16,8 @@
 @property (nonatomic, assign) CGFloat lineSpacing;
 @property (nonatomic, assign) CGSize collectionViewSize;
 @property (nonatomic, assign) UIEdgeInsets insets;
+@property (nonatomic, assign) CGRect oldRect;
+@property (nonatomic, strong) NSArray *oldArray;
 
 @end
 
@@ -57,6 +59,11 @@
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
 {
+    BOOL shouldUpdate = [self shouldUpdateAttributesArray];
+    if (CGRectEqualToRect(_oldRect, rect) && !shouldUpdate) {
+        return _oldArray;
+    }
+    _oldRect = rect;
     NSMutableArray *attributesArray = [NSMutableArray array];
     for (NSInteger i = 0; i < self.collectionView.numberOfSections; i++) {
         NSInteger numberOfCellsInSection = [self.collectionView numberOfItemsInSection:i];
@@ -68,7 +75,14 @@
             }
         }
     }
+    _oldArray = attributesArray;
     return  attributesArray;
+}
+
+//needs override
+- (BOOL)shouldUpdateAttributesArray
+{
+    return NO;
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
