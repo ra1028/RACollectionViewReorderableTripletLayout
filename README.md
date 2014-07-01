@@ -24,10 +24,10 @@ RACollectionViewReorderableTripletLayout
 
 ## Installation
 
-RACollectionViewReorderableTribletLayout is available through [CocoaPods](http://cocoapods.org). To install
+RACollectionViewReorderableTripletLayout is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-    pod "RACollectionViewReorderableTribletLayout"
+    pod "RACollectionViewReorderableTripletLayout"
 
 
 ## Usage
@@ -68,5 +68,5 @@ self.collectionView.dataSource = self;
 
 
 ## License
-RACollectionViewReorderableTribletLayout is available under the MIT license. See the LICENSE file for more info.
+RACollectionViewReorderableTripletLayout is available under the MIT license. See the LICENSE file for more info.
 
