@@ -41,10 +41,11 @@ self.collectionView.dataSource = self;
 ## Delegates and Datasource
 #### TripletLayout
 ```Objective-C
-- (CGSize)sizeForLargeItemsInCollectionView:(UICollectionView *)collectionView; //Default to automaticaly grow square !
+- (CGSize)collectionView:(UICollectionView *)collectionView sizeForLargeItemsInSection:(NSInteger)section; //Default to automaticaly grow square !
+- (UIEdgeInsets)insetsForCollectionView:(UICollectionView *)collectionView;
+- (CGFloat)sectionSpacingForCollectionView:(UICollectionView *)collectionView;
 - (CGFloat)minimumInteritemSpacingForCollectionView:(UICollectionView *)collectionView;
 - (CGFloat)minimumLineSpacingForCollectionView:(UICollectionView *)collectionView;
-- (UIEdgeInsets)insetsForCollectionView:(UICollectionView *)collectionView;
 ```
 #### ReorderableTripletLayout
 ```Objective-C
