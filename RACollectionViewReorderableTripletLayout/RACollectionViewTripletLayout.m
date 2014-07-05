@@ -36,10 +36,11 @@
     self.delegate = (id<RACollectionViewDelegateTripletLayout>)self.collectionView.delegate;
     //collection view size
     _collectionViewSize = self.collectionView.bounds.size;
-    //spacing
+    //some values
     _itemSpacing = 0;
     _lineSpacing = 0;
     _sectionSpacing = 0;
+    _insets = UIEdgeInsetsMake(0, 0, 0, 0);
     if ([self.delegate respondsToSelector:@selector(minimumInteritemSpacingForCollectionView:)]) {
         _itemSpacing = [self.delegate minimumInteritemSpacingForCollectionView:self.collectionView];
     }
@@ -49,8 +50,6 @@
     if ([self.delegate respondsToSelector:@selector(sectionSpacingForCollectionView:)]) {
         _sectionSpacing = [self.delegate sectionSpacingForCollectionView:self.collectionView];
     }
-    //insets
-    _insets = UIEdgeInsetsMake(0, 0, 0, 0);
     if ([self.delegate respondsToSelector:@selector(insetsForCollectionView:)]) {
         _insets = [self.delegate insetsForCollectionView:self.collectionView];
     }
@@ -63,7 +62,6 @@
 
 - (CGSize)collectionViewContentSize
 {
-//    CGSize contentSize = CGSizeMake(_collectionViewSize.width, _numberOfLines * (_largeCellSize.height + _lineSpacing) - _lineSpacing + _insets.top + _insets.bottom);
     CGSize contentSize = CGSizeMake(_collectionViewSize.width, 0);
     for (NSInteger i = 0; i < self.collectionView.numberOfSections; i++) {
         NSInteger numberOfLines = ceil((CGFloat)[self.collectionView numberOfItemsInSection:i] / 3.f);
@@ -71,6 +69,10 @@
         contentSize.height += lineHeight;
     }
     contentSize.height += _insets.top + _insets.bottom + _sectionSpacing * (self.collectionView.numberOfSections - 1);
+    NSInteger numberOfItemsInLastSection = [self.collectionView numberOfItemsInSection:self.collectionView.numberOfSections - 1];
+    if ((numberOfItemsInLastSection - 1) % 3 == 0 && (numberOfItemsInLastSection - 1) % 6 != 0) {
+        contentSize.height -= [_smallCellSizeArray[self.collectionView.numberOfSections - 1] CGSizeValue].height + _itemSpacing;
+    }
     return contentSize;
 }
 
