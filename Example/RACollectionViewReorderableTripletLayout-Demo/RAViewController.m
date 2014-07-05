@@ -41,12 +41,20 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    if (section == 0) {
+        return 1;
+    }
     return _photosArray.count;
+}
+
+- (CGFloat)sectionSpacingForCollectionView:(UICollectionView *)collectionView
+{
+    return 5.f;
 }
 
 - (CGFloat)minimumInteritemSpacingForCollectionView:(UICollectionView *)collectionView
@@ -64,8 +72,11 @@
     return UIEdgeInsetsMake(5.f, 0, 5.f, 0);
 }
 
-- (CGSize)sizeForLargeItemsInCollectionView:(UICollectionView *)collectionView
+- (CGSize)collectionView:(UICollectionView *)collectionView sizeForLargeItemsInSection:(NSInteger)section
 {
+    if (section == 0) {
+        return CGSizeMake(320, 200);
+    }
     return RACollectionViewTripletLayoutStyleSquare; //same as default !
 }
 
@@ -96,24 +107,36 @@
     [_photosArray insertObject:image atIndex:toIndexPath.item];
 }
 
+- (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath canMoveToIndexPath:(NSIndexPath *)toIndexPath
+{
+    if (toIndexPath.section == 0) {
+        return NO;
+    }
+    return YES;
+}
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"cellID";
-    RACollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
-    
-    [cell.imageView removeFromSuperview];
-    cell.imageView.frame = cell.bounds;
-    cell.imageView.image = _photosArray[indexPath.item];
-    if (indexPath.section == 1) {
+    if (indexPath.section == 0) {
+        static NSString *cellID = @"headerCell";
+        UICollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
+        return cell;
+    }else {
+        static NSString *cellID = @"cellID";
+        RACollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
+        [cell.imageView removeFromSuperview];
+        cell.imageView.frame = cell.bounds;
         cell.imageView.image = _photosArray[indexPath.item];
+        [cell.contentView addSubview:cell.imageView];
+        return cell;
     }
-    [cell.contentView addSubview:cell.imageView];
-    
-    return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 0) {
+        return;
+    }
     if (_photosArray.count == 1) {
         return;
     }
