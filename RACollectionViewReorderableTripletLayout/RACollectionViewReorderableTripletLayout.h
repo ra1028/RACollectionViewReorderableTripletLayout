@@ -8,7 +8,7 @@
 
 #import "RACollectionViewTripletLayout.h"
 
-@protocol RACollectionViewReorderableTripletLayoutDataSource <UICollectionViewDataSource>
+@protocol RACollectionViewReorderableTripletLayoutDataSource <RACollectionViewTripletLayoutDatasource>
 
 @optional
 

@@ -22,15 +22,18 @@
 
 @end
 
+@protocol RACollectionViewTripletLayoutDatasource <UICollectionViewDataSource>
 
+@end
 
 @interface RACollectionViewTripletLayout : UICollectionViewFlowLayout
 
 @property (nonatomic, assign) id<RACollectionViewDelegateTripletLayout> delegate;
+@property (nonatomic, assign) id<RACollectionViewTripletLayoutDatasource> datasource;
 @property (nonatomic, assign, readonly) CGSize largeCellSize;
 @property (nonatomic, assign, readonly) CGSize smallCellSize;
 
-//needs override
-- (BOOL)shouldUpdateAttributesArray;
+- (BOOL)shouldUpdateAttributesArray; //needs override
+- (CGFloat)contentHeight;
 
 @end

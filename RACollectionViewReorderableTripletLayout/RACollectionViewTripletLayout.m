@@ -55,6 +55,59 @@
     }
 }
 
+- (CGFloat)contentHeight
+{
+    CGFloat contentHeight = 0;
+    NSInteger numberOfSections = self.collectionView.numberOfSections;
+    CGSize collectionViewSize = self.collectionView.bounds.size;
+    
+    UIEdgeInsets insets = UIEdgeInsetsZero;
+    if ([self.delegate respondsToSelector:@selector(insetsForCollectionView:)]) {
+        insets = [self.delegate insetsForCollectionView:self.collectionView];
+    }
+    CGFloat sectionSpacing = 0;
+    if ([self.delegate respondsToSelector:@selector(sectionSpacingForCollectionView:)]) {
+        sectionSpacing = [self.delegate sectionSpacingForCollectionView:self.collectionView];
+    }
+    CGFloat itemSpacing = 0;
+    if ([self.delegate respondsToSelector:@selector(minimumInteritemSpacingForCollectionView:)]) {
+        itemSpacing = [self.delegate minimumInteritemSpacingForCollectionView:self.collectionView];
+    }
+    CGFloat lineSpacing = 0;
+    if ([self.delegate respondsToSelector:@selector(minimumLineSpacingForCollectionView:)]) {
+       lineSpacing = [self.delegate minimumLineSpacingForCollectionView:self.collectionView];
+    }
+    
+    contentHeight += insets.top + insets.bottom + sectionSpacing * (numberOfSections - 1);
+    
+    CGFloat lastSmallCellHeight = 0;
+    for (NSInteger i = 0; i < numberOfSections; i++) {
+        NSInteger numberOfLines = ceil((CGFloat)[self.collectionView numberOfItemsInSection:i] / 3.f);
+        
+        CGFloat largeCellSideLength = (2.f * (collectionViewSize.width - insets.left - insets.right) - itemSpacing) / 3.f;
+        CGFloat smallCellSideLength = (largeCellSideLength - itemSpacing) / 2.f;
+        CGSize largeCellSize = CGSizeMake(largeCellSideLength, largeCellSideLength);
+        CGSize smallCellSize = CGSizeMake(smallCellSideLength, smallCellSideLength);
+        if ([self.delegate respondsToSelector:@selector(collectionView:sizeForLargeItemsInSection:)]) {
+            if (!CGSizeEqualToSize([self.delegate collectionView:self.collectionView sizeForLargeItemsInSection:i], RACollectionViewTripletLayoutStyleSquare)) {
+                largeCellSize = [self.delegate collectionView:self.collectionView sizeForLargeItemsInSection:i];
+                smallCellSize = CGSizeMake(collectionViewSize.width - largeCellSize.width - itemSpacing - insets.left - insets.right, (largeCellSize.height / 2.f) - (itemSpacing / 2.f));
+            }
+        }
+        lastSmallCellHeight = smallCellSize.height;
+        CGFloat largeCellHeight = largeCellSize.height;
+        CGFloat lineHeight = numberOfLines * (largeCellHeight + lineSpacing) - lineSpacing;
+        contentHeight += lineHeight;
+    }
+    
+    NSInteger numberOfItemsInLastSection = [self.collectionView numberOfItemsInSection:numberOfSections -1];
+    if ((numberOfItemsInLastSection - 1) % 3 == 0 && (numberOfItemsInLastSection - 1) % 6 != 0) {
+        contentHeight -= lastSmallCellHeight + itemSpacing;
+    }
+    
+    return contentHeight;
+}
+
 - (id<RACollectionViewDelegateTripletLayout>)delegate
 {
     return (id<RACollectionViewDelegateTripletLayout>)self.collectionView.delegate;
