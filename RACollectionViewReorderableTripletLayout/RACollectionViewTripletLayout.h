@@ -33,7 +33,6 @@
 @property (nonatomic, assign, readonly) CGSize largeCellSize;
 @property (nonatomic, assign, readonly) CGSize smallCellSize;
 
-- (BOOL)shouldUpdateAttributesArray; //needs override
 - (CGFloat)contentHeight;
 
 @end
