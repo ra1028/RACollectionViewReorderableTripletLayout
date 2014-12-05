@@ -3,6 +3,8 @@ RACollectionViewReorderableTripletLayout
 
 #### The custom collectionView layout that can perform reordering of cells by dragging it.
 
+### <span style="color:red;">I created a new awesome UICollectionView reorderable layout !</span>
+#### <span style="color:red;">[Check it out !!](https://github.com/ra1028/RAReorderableLayout)</span>
 
 ## Features
 - Reorder cells by long pressing and dragging it !
