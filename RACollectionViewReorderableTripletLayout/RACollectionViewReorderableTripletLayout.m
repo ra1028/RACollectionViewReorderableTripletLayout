@@ -53,9 +53,19 @@ typedef NS_ENUM(NSInteger, RAScrollDirction) {
 
 #pragma mark - Override methods
 
+- (void)setDelegate:(id<RACollectionViewDelegateReorderableTripletLayout>)delegate
+{
+    self.collectionView.delegate = delegate;
+}
+
 - (id<RACollectionViewDelegateReorderableTripletLayout>)delegate
 {
     return (id<RACollectionViewDelegateReorderableTripletLayout>)self.collectionView.delegate;
+}
+
+- (void)setDatasource:(id<RACollectionViewReorderableTripletLayoutDataSource>)datasource
+{
+    self.collectionView.dataSource = datasource;
 }
 
 - (id<RACollectionViewReorderableTripletLayoutDataSource>)datasource

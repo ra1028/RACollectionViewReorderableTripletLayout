@@ -16,9 +16,14 @@
     if (self) {
         _imageView = [[UIImageView alloc] init];
         _imageView.contentMode = UIViewContentModeScaleAspectFill;
-        _imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     }
     return self;
+}
+
+- (void)setBounds:(CGRect)bounds
+{
+    [super setBounds:bounds];
+    self.imageView.frame = bounds;
 }
 
 - (void)setHighlighted:(BOOL)highlighted

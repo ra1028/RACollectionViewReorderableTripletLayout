@@ -31,9 +31,7 @@
 - (void)prepareLayout
 {
     [super prepareLayout];
-
-    //delegate
-    self.delegate = (id<RACollectionViewDelegateTripletLayout>)self.collectionView.delegate;
+    
     //collection view size
     _collectionViewSize = self.collectionView.bounds.size;
     //some values
@@ -106,6 +104,11 @@
     }
     
     return contentHeight;
+}
+
+- (void)setDelegate:(id<RACollectionViewDelegateTripletLayout>)delegate
+{
+    self.collectionView.delegate = delegate;
 }
 
 - (id<RACollectionViewDelegateTripletLayout>)delegate

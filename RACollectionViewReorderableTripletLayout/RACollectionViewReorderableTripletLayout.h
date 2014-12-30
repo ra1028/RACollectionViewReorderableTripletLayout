@@ -39,8 +39,8 @@
 
 @interface RACollectionViewReorderableTripletLayout : RACollectionViewTripletLayout <UIGestureRecognizerDelegate>
 
-@property (nonatomic, assign) id<RACollectionViewDelegateReorderableTripletLayout> delegate;
-@property (nonatomic, assign) id<RACollectionViewReorderableTripletLayoutDataSource> datasource;
+@property (nonatomic, weak) id<RACollectionViewDelegateReorderableTripletLayout> delegate;
+@property (nonatomic, weak) id<RACollectionViewReorderableTripletLayoutDataSource> datasource;
 @property (nonatomic, strong, readonly) UILongPressGestureRecognizer *longPressGesture;
 @property (nonatomic, strong, readonly) UIPanGestureRecognizer *panGesture;
 
