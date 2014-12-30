@@ -120,6 +120,9 @@
 {
     CGSize contentSize = CGSizeMake(_collectionViewSize.width, 0);
     for (NSInteger i = 0; i < self.collectionView.numberOfSections; i++) {
+        if ([self.collectionView numberOfItemsInSection:i] == 0) {
+            break;
+        }
         NSInteger numberOfLines = ceil((CGFloat)[self.collectionView numberOfItemsInSection:i] / 3.f);
         CGFloat lineHeight = numberOfLines * ([_largeCellSizeArray[i] CGSizeValue].height + _lineSpacing) - _lineSpacing;
         contentSize.height += lineHeight;
